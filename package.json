@@ -1,0 +1,15 @@
+{
+  "name": "generator-az-tf-cjc",
+  "version": "0.0.1",
+  "description": "Yeoman generator for Azure terraform project.",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Charlie Christina",
+  "dependencies": {
+    "yeoman-generator": "^5.2.0"
+  }
+}
