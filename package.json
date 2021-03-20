@@ -8,8 +8,5 @@
   "keywords": [
     "yeoman-generator"
   ],
-  "author": "Charlie Christina",
-  "dependencies": {
-    "yeoman-generator": "^5.2.0"
-  }
+  "author": "Charlie Christina"
 }
