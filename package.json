@@ -10,6 +10,6 @@
   ],
   "author": "Charlie Christina",
   "dependencies": {
-    "yeoman-generator": "^3.0.0"
+    "yeoman-generator": "^5.0.0"
   }
 }
