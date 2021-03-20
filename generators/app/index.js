@@ -1,5 +1,6 @@
 'use strict';
 var Generator = require('yeoman-generator');
+const { exec } = require('child_process');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
