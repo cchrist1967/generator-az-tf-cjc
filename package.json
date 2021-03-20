@@ -1,6 +1,6 @@
 {
   "name": "generator-az-tf-cjc",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Yeoman generator for Azure terraform project.",
   "files": [
     "generators"
