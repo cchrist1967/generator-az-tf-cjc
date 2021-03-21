@@ -1,6 +1,7 @@
 'use strict';
 var Generator = require('yeoman-generator');
 const { exec } = require('child_process');
+var os = require('os')
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -10,6 +11,7 @@ module.exports = class extends Generator {
   }
 
   async prompting() {
+    this.log("OS: ", os.platform(), " ", os.type(), " ", os.release())
     this.answers = await this.prompt([
       {
         type: "input",
@@ -244,8 +246,11 @@ module.exports = class extends Generator {
   install() {
     if (this.answers.gitflow) {
       this.log("\n\n*** INSTALLING GIT FLOW & INITIALIZING GIT REPO ***")
-      this.spawnCommandSync("sudo", ["apt-get", "update"])
-      this.spawnCommandSync("sudo", ["apt-get", "install", "git-flow"])
+      if (os.platform() === "linux" ) { 
+        this.log("*** Installing with apt-get ***")
+        this.spawnCommandSync("sudo", ["apt-get", "update"])
+        this.spawnCommandSync("sudo", ["apt-get", "install", "git-flow"])
+      }
       this.spawnCommandSync("git", ["flow", "init"])
     } else {
       this.log("\n\n*** INITIALIZING GIT REPO ***")
@@ -254,10 +259,13 @@ module.exports = class extends Generator {
     this.spawnCommandSync("git", ["add", "."])   
     if (this.answers.precommit) {
       this.log("\n\n*** INSTALLING PRE-COMMIT TOOLS ***")
-      this.spawnCommandSync("sudo", ["apt-get", "install", "python3-pip"])
+      if (os.platform() === "linux" ) { 
+        this.log("*** Installing with apt-get ***")
+        this.spawnCommandSync("sudo", ["apt-get", "install", "python3-pip"])
+        this.spawnCommandSync("sudo", ["apt-get", "install", "terraform=0.12.30"])
+      }
       this.spawnCommandSync("pip3", ["install", "pre-commit"])
       this.spawnCommandSync("pip3", ["install", "checkov"])
-      this.spawnCommandSync("sudo", ["apt-get", "install", "terraform=0.12.30"])
       this.spawnCommandSync("pre-commit", ["run", "-a"])
     }
   }
